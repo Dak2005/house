@@ -27,8 +27,56 @@ body {{
 
 st.markdown(page_bg, unsafe_allow_html=True)
 
+# Custom CSS for Styling
+st.markdown("""
+    <style>
+        /* Title Styling */
+        .title {
+            color: #FFD700; /* Gold color */
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        /* Input field styles */
+        div[data-testid="stNumberInput"] label, div[data-testid="stSelectbox"] label {
+            color: #FF5733; /* Orange-Red */
+            font-weight: bold;
+        }
+
+        /* Styling the number input boxes */
+        div[data-testid="stNumberInput"] input {
+            background-color: #222222; /* Dark Background */
+            color: white;
+            border-radius: 8px;
+        }
+        
+        /* Styling the dropdown select box */
+        div[data-testid="stSelectbox"] select {
+            background-color: #222222;
+            color: white;
+            border-radius: 8px;
+        }
+        
+        /* Custom button style */
+        div[data-testid="stButton"] button {
+            background-color: #008CBA; /* Blue */
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        /* Centered Button */
+        .stButton {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Streamlit UI
-st.title("🏠 Flat Price Prediction in Hyderabad")
+st.markdown('<p class="title">🏠 Flat Price Prediction in Hyderabad</p>', unsafe_allow_html=True)
 
 # User inputs
 bedrooms = st.number_input("Number of Bedrooms", min_value=1, max_value=10, value=2)
@@ -38,7 +86,8 @@ square_feet = st.number_input("Square Feet", min_value=500, max_value=100000, va
 car_parking = st.selectbox("Car Parking", ["Yes", "No"])
 floor_number = st.number_input("Floor Number", min_value=1, max_value=50, value=1)
 age_of_property = st.number_input("Age of Property (years)", min_value=0, max_value=100, value=5)
-location = st.selectbox("Location", ["Hitech City", "Kukatpally", "Gachibowli", "Banjara Hills", "Mehdipatnam","Madhapur","Begumpet","Jubilee Hills","Kondapur","Manikonda"])
+location = st.selectbox("Location", ["Hitech City", "Kukatpally", "Gachibowli", "Banjara Hills", "Mehdipatnam",
+                                     "Madhapur", "Begumpet", "Jubilee Hills", "Kondapur", "Manikonda"])
 
 # Prediction
 if st.button("Predict Price"):
