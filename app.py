@@ -5,8 +5,30 @@ import pandas as pd
 # Load the trained model
 model = joblib.load("flat_price_model.pkl")
 
+# Set background image using CSS
+background_image_url = "https://s7ap1.scene7.com/is/image/incredibleindia/charminar-mosque-hyderabad-telangana-3-attr-about?qlt=82&ts=1726652899615"
+
+page_bg = f"""
+<style>
+body {{
+    background-image: url("{background_image_url}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}}
+.stApp {{
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+    padding: 20px;
+    border-radius: 10px;
+}}
+</style>
+"""
+
+st.markdown(page_bg, unsafe_allow_html=True)
+
 # Streamlit UI
-st.title("Flat Price Prediction in Hyderabad")
+st.title("🏠 Flat Price Prediction in Hyderabad")
 
 # User inputs
 bedrooms = st.number_input("Number of Bedrooms", min_value=1, max_value=10, value=2)
@@ -27,4 +49,4 @@ if st.button("Predict Price"):
     # Make prediction
     predicted_price = model.predict(input_data)[0]
 
-    st.success(f"Estimated Flat Price: ₹{predicted_price:.2f} Lakhs")
+    st.success(f"🏡 Estimated Flat Price: ₹{predicted_price:.2f} Lakhs")
